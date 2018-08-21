@@ -1,15 +1,26 @@
+//get user name
+let user = prompt("What is your name, please?")
+
+let playerName = document.getElementById('player');
+
+// show user on screen
+
+playerName.innerHTML = user;
+
+// $(function() {
 /*
  * Create a list that holds all of your cards
  */
 
- // create an empty list for cards
-let cards = [];
 
-cards = document.getElementsByClassName('card');
+// create an empty list for cards
 
-// spread card list into multiple elements
-cards = [...cards];
-console.log(cards);
+let cardList = [];
+
+cardList = document.querySelectorAll('.card');
+
+// spread card list
+cardList = [...cardList];
 
 /*
  * Display the cards on the page
@@ -20,7 +31,8 @@ console.log(cards);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length,
+        temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -33,11 +45,38 @@ function shuffle(array) {
     return array;
 }
 
-shuffle(cards);
+let shuffledCards = shuffle(cardList);
+
+function createCards() {
+    let cardContainer = [];
+
+    // console.log(cardList);
 
 
+    for (let i = 0; i < shuffledCards.length; i++) {
+        const eachCard = document.createElement('li')
+            // cardContainer.push(eachCard);
+        cardContainer.push(shuffledCards[i]);
+        eachCard.classList.add('card');
+    }
+    // let cardHolder = document.querySelector('.deck')
+    // cardHolder.removeChild('li');
+    // console.log(cardContainer);
 
 
+    // for (const card of cardList) {
+    // const eachCard = document.createElement('li');
+    //     cardContainer.push(card);
+    //     eachCard.classList.add('card');
+    //     eachCard.innerHTML('card')
+    //     cardContainer.appendChild(eachCard);
+    //     console.log(cardContainer);
+    // }
+    // cardContainer.innerHTML(cardContainer);
+
+}
+
+createCards();
 
 
 
@@ -56,10 +95,12 @@ shuffle(cards);
 
 // function displayCardSymbol() {
 //     let listOfCards = document.getElementsByClassName('card');
-    
+
 //     listOfCards.addEventListener('click', function () {
 //         alert('you clicked on this card');
 //     })    
 // }
 
 // displayCardSymbol();
+
+// });
