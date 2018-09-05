@@ -15,12 +15,12 @@ playerName.innerHTML = user;
 
 // create an empty list for cards
 
-let cardList = [];
+let cardList = ['<i class="fa fa-diamond"></i>', '<i class="a fa-paper-plane-o"></i>', '<i class="fa fa-anchor"></i>', '<i class="fa fa-bolt"></i>',
+    '<i class="fa fa-cube"></i>', '<i class="fa fa-anchor"></i>', '<i class="fa fa-leaf"></i>', '<i class="fa fa-bicycle"></i>',
+    '<i class="fa fa-diamond"></i>', '<i class="fa fa-bomb"></i>', '<i class="fa fa-leaf"></i>', '<i class="fa fa-bomb"></i>',
+    '<i class="fa fa-bolt"></i>', '<i class="fa fa-bicycle"></i>', '<i class="fa fa-paper-plane-o"></i>', '<i class="fa fa-cube"></i>'
+];
 
-cardList = document.querySelectorAll('.card');
-
-// spread card list
-cardList = [...cardList];
 
 /*
  * Display the cards on the page
@@ -47,32 +47,20 @@ function shuffle(array) {
 
 let shuffledCards = shuffle(cardList);
 
+// console.log(shuffledCards);
+
 function createCards() {
-    let cardContainer = [];
 
-    // console.log(cardList);
+    let cardHolder = document.querySelector('.deck')
 
-
-    for (let i = 0; i < shuffledCards.length; i++) {
-        const eachCard = document.createElement('li')
-            // cardContainer.push(eachCard);
-        cardContainer.push(shuffledCards[i]);
+    for (let i = 0; i < cardList.length; i++) {
+        let eachCard = document.createElement('li');
+        // cardContainer.push(eachCard);
+        eachCard.innerHTML = (shuffledCards[i]);
         eachCard.classList.add('card');
+        cardHolder.appendChild(eachCard);
+        console.log(eachCard);
     }
-    // let cardHolder = document.querySelector('.deck')
-    // cardHolder.removeChild('li');
-    // console.log(cardContainer);
-
-
-    // for (const card of cardList) {
-    // const eachCard = document.createElement('li');
-    //     cardContainer.push(card);
-    //     eachCard.classList.add('card');
-    //     eachCard.innerHTML('card')
-    //     cardContainer.appendChild(eachCard);
-    //     console.log(cardContainer);
-    // }
-    // cardContainer.innerHTML(cardContainer);
 
 }
 
