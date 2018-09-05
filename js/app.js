@@ -81,14 +81,21 @@ createCards();
 
 // const individualCard = document.getElementsByTagName('li')
 
-// function displayCardSymbol() {
-//     let listOfCards = document.getElementsByClassName('card');
+// function to display card symbol on click
+function displayCardSymbol() {
+    const individualCard = document.querySelectorAll('.card');
 
-//     listOfCards.addEventListener('click', function () {
-//         alert('you clicked on this card');
-//     })    
-// }
+    for (const card of individualCard) {
+        card.addEventListener('click', function() {
+            // alert('you clicked on this card');
+            card.classList.add('open', 'show');
+            // openCards.push(this);
+            // console.log(openCards);
+        });
+    }
 
-// displayCardSymbol();
+}
+
+displayCardSymbol();
 
 // });
