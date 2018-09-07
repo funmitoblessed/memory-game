@@ -12,14 +12,23 @@ playerName.innerHTML = user;
  * Create a list that holds all of your cards
  */
 
+// declare all variables
 
-// create an empty list for cards
 
-let cardList = ['<i class="fa fa-diamond"></i>', '<i class="a fa-paper-plane-o"></i>', '<i class="fa fa-anchor"></i>', '<i class="fa fa-bolt"></i>',
+// list of open cards
+let openCards = [];
+
+
+// list of cards
+let cardList = ['<i class="fa fa-diamond"></i>', '<i class="fa fa-paper-plane-o"></i>', '<i class="fa fa-anchor"></i>', '<i class="fa fa-bolt"></i>',
     '<i class="fa fa-cube"></i>', '<i class="fa fa-anchor"></i>', '<i class="fa fa-leaf"></i>', '<i class="fa fa-bicycle"></i>',
     '<i class="fa fa-diamond"></i>', '<i class="fa fa-bomb"></i>', '<i class="fa fa-leaf"></i>', '<i class="fa fa-bomb"></i>',
     '<i class="fa fa-bolt"></i>', '<i class="fa fa-bicycle"></i>', '<i class="fa fa-paper-plane-o"></i>', '<i class="fa fa-cube"></i>'
 ];
+
+let cardHolder = document.querySelector('.deck')
+
+
 
 
 /*
@@ -45,25 +54,21 @@ function shuffle(array) {
     return array;
 }
 
+// shuffle list of cards
 let shuffledCards = shuffle(cardList);
 
-// console.log(shuffledCards);
 
 function createCards() {
 
-    let cardHolder = document.querySelector('.deck')
-
-    for (let i = 0; i < cardList.length; i++) {
+    for (let i = 0; i < shuffledCards.length; i++) {
         let eachCard = document.createElement('li');
-        // cardContainer.push(eachCard);
         eachCard.innerHTML = (shuffledCards[i]);
         eachCard.classList.add('card');
         cardHolder.appendChild(eachCard);
-        console.log(eachCard);
+
     }
 
-}
-
+};
 createCards();
 
 
@@ -79,23 +84,56 @@ createCards();
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-// const individualCard = document.getElementsByTagName('li')
+let individualCard = document.querySelectorAll('.card');
 
-// function to display card symbol on click
-function displayCardSymbol() {
-    const individualCard = document.querySelectorAll('.card');
+// Event Listener for click
+(function displayCardSymbol() {
 
-    for (const card of individualCard) {
+    individualCard.forEach(function(card) {
         card.addEventListener('click', function() {
-            // alert('you clicked on this card');
             card.classList.add('open', 'show');
-            // openCards.push(this);
-            // console.log(openCards);
+            listOfOpenCards(card);
+            compareCards(openCards);
         });
-    }
+    });
+})();
 
+// open cards function
+function listOfOpenCards(card) {
+    if (openCards.length < 2) {
+        openCards.push(card);
+    }
 }
 
-displayCardSymbol();
+
+
+// function to compare cards when clicked 
+function compareCards(openCards) {
+    console.log(openCards);
+    if ((openCards.length === 2) && (openCards[0].innerHTML === openCards[1].innerHTML)) {
+        openCards[0].classList.add('match');
+        openCards[1].classList.add('match');
+    } //  else {
+    //     openCards[0].classList.remove('open', 'show');
+    //     openCards[1].classList.remove('open', 'show');
+    //     // openCards[] = [];
+    // }
+}
+
+// counter function
+
+
+//function to determine if cards have all matched
+
+
+// if (openCards.length === 16) {
+//     alert('Great Job! You win');
+// }
+
+
+
+
+
+
 
 // });
