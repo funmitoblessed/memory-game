@@ -96,7 +96,6 @@ function displayCardSymbol(eachCard) {
         if (openCards.length === 1) {
             let secondCard = this;
             secondCard.classList.add('open', 'show', );
-            // secondCard = this;
             openCards.push(secondCard);
 
             compareCards(openCards);
@@ -112,15 +111,6 @@ function displayCardSymbol(eachCard) {
     });
 
 };
-
-// open cards function
-// function listOfOpenCards(card) {
-//     // if (openCards.length < 2) {
-//     console.log(openCards);
-//     // openCards.push(card);
-//     console.log(openCards);
-//     // }
-// }
 
 
 // function to compare cards when clicked 
@@ -138,7 +128,7 @@ function compareCards() {
         openCards = [];
     }
 }
-// console.log(openCards);
+
 
 function matched() {
     matchedCards.push(openCards[0], openCards[1]);
@@ -157,13 +147,12 @@ function allmatched() {
         alert('Great Job! You win');
     }
 }
-
-
-
+createCards();
 // });
 
-createCards();
 
-// TODO - not sure what to do yet
-// fix bug that allows clicking on the same card twice 
-// which turns it into the natched state
+// TODO - not sure how yet
+
+/* fix bug that allows clicking on the same card twice 
+ * which turns it into the natched state
+ */
