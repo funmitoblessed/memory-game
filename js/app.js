@@ -1,11 +1,11 @@
-//get user name
-// let user = prompt("What is your name, please?")
+// get user name
+let user = prompt("What is your name, please?")
 
-// let playerName = document.getElementById('player');
+let playerName = document.getElementById('player');
 
-// // show user on screen
+// show user on screen
 
-// playerName.innerHTML = user;
+playerName.innerHTML = user;
 
 // $(function() {
 /*
