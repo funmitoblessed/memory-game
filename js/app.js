@@ -65,6 +65,7 @@ function createCards() {
         eachCard.innerHTML = (shuffledCards[i]);
         cardHolder.appendChild(eachCard);
         displayCardSymbol(eachCard);
+
         // console.log(eachCard);
 
     }
@@ -89,7 +90,6 @@ const allCards = document.getElementsByClassName('card');
 function displayCardSymbol(eachCard) {
 
     eachCard.addEventListener('click', function() {
-        // eachCard.classList.add('open', 'show');
         let firstCard = this;
 
 
@@ -99,18 +99,16 @@ function displayCardSymbol(eachCard) {
             // secondCard = this;
             openCards.push(secondCard);
 
+            compareCards(openCards);
 
-            // compareCards(openCards);
-            // console.log(openCards);
         } else { // if (openCards.length === 0) 
 
-            // let firstCard = this;
             firstCard.classList.add('open', 'show');
             openCards.push(firstCard);
 
         }
-        // listOfOpenCards(card);
-        compareCards(openCards);
+
+
     });
 
 };
@@ -133,7 +131,8 @@ function compareCards() {
         openCards[1].classList.add('match');
         matched();
         openCards = [];
-    } else if ((openCards.length === 2) && (openCards[0].innerHTML !== openCards[1].innerHTML)) {
+    } else { // if ((openCards.length === 2) && (openCards[0].innerHTML !== openCards[1].innerHTML)) 
+
         openCards[0].classList.remove('open', 'show');
         openCards[1].classList.remove('open', 'show');
         openCards = [];
@@ -145,9 +144,7 @@ function matched() {
     matchedCards.push(openCards[0], openCards[1]);
     // console.log(openCards);
     // console.log(matchedCards);
-    if (matchedCards.length === 16) {
-        alert('Great Job! You win');
-    }
+    allmatched();
 
 }
 
@@ -155,7 +152,11 @@ function matched() {
 
 
 //function to determine if cards have all matched
-
+function allmatched() {
+    if (matchedCards.length === 16) {
+        alert('Great Job! You win');
+    }
+}
 
 
 
