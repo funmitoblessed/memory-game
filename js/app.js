@@ -1,11 +1,11 @@
 //get user name
-let user = prompt("What is your name, please?")
+// let user = prompt("What is your name, please?")
 
-let playerName = document.getElementById('player');
+// let playerName = document.getElementById('player');
 
-// show user on screen
+// // show user on screen
 
-playerName.innerHTML = user;
+// playerName.innerHTML = user;
 
 // $(function() {
 /*
@@ -18,6 +18,7 @@ playerName.innerHTML = user;
 // list of open cards
 let openCards = [];
 
+let matchedCards = [];
 
 // list of cards
 let cardList = ['<i class="fa fa-diamond"></i>', '<i class="fa fa-paper-plane-o"></i>', '<i class="fa fa-anchor"></i>', '<i class="fa fa-bolt"></i>',
@@ -27,8 +28,6 @@ let cardList = ['<i class="fa fa-diamond"></i>', '<i class="fa fa-paper-plane-o"
 ];
 
 let cardHolder = document.querySelector('.deck')
-
-
 
 
 /*
@@ -57,20 +56,20 @@ function shuffle(array) {
 // shuffle list of cards
 let shuffledCards = shuffle(cardList);
 
-
+// create Game Board
 function createCards() {
 
     for (let i = 0; i < shuffledCards.length; i++) {
         let eachCard = document.createElement('li');
-        eachCard.innerHTML = (shuffledCards[i]);
         eachCard.classList.add('card');
+        eachCard.innerHTML = (shuffledCards[i]);
         cardHolder.appendChild(eachCard);
+        displayCardSymbol(eachCard);
+        // console.log(eachCard);
 
     }
 
 };
-createCards();
-
 
 
 /*
@@ -84,40 +83,72 @@ createCards();
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-let individualCard = document.querySelectorAll('.card');
+const allCards = document.getElementsByClassName('card');
 
 // Event Listener for click
-(function displayCardSymbol() {
+function displayCardSymbol(eachCard) {
 
-    individualCard.forEach(function(card) {
-        card.addEventListener('click', function() {
-            card.classList.add('open', 'show');
-            listOfOpenCards(card);
-            compareCards(openCards);
-        });
+    eachCard.addEventListener('click', function() {
+        // eachCard.classList.add('open', 'show');
+        let firstCard = this;
+
+
+        if (openCards.length === 1) {
+            let secondCard = this;
+            secondCard.classList.add('open', 'show', );
+            // secondCard = this;
+            openCards.push(secondCard);
+
+
+            // compareCards(openCards);
+            // console.log(openCards);
+        } else { // if (openCards.length === 0) 
+
+            // let firstCard = this;
+            firstCard.classList.add('open', 'show');
+            openCards.push(firstCard);
+
+        }
+        // listOfOpenCards(card);
+        compareCards(openCards);
     });
-})();
+
+};
 
 // open cards function
-function listOfOpenCards(card) {
-    if (openCards.length < 2) {
-        openCards.push(card);
-    }
-}
-
+// function listOfOpenCards(card) {
+//     // if (openCards.length < 2) {
+//     console.log(openCards);
+//     // openCards.push(card);
+//     console.log(openCards);
+//     // }
+// }
 
 
 // function to compare cards when clicked 
-function compareCards(openCards) {
-    console.log(openCards);
+function compareCards() {
+
     if ((openCards.length === 2) && (openCards[0].innerHTML === openCards[1].innerHTML)) {
         openCards[0].classList.add('match');
         openCards[1].classList.add('match');
-    } //  else {
-    //     openCards[0].classList.remove('open', 'show');
-    //     openCards[1].classList.remove('open', 'show');
-    //     // openCards[] = [];
-    // }
+        matched();
+        openCards = [];
+    } else if ((openCards.length === 2) && (openCards[0].innerHTML !== openCards[1].innerHTML)) {
+        openCards[0].classList.remove('open', 'show');
+        openCards[1].classList.remove('open', 'show');
+        openCards = [];
+    }
+}
+// console.log(openCards);
+
+function matched() {
+    matchedCards.push(openCards[0], openCards[1]);
+    // console.log(openCards);
+    // console.log(matchedCards);
+    if (matchedCards.length === 16) {
+        alert('Great Job! You win');
+    }
+
 }
 
 // counter function
@@ -126,14 +157,12 @@ function compareCards(openCards) {
 //function to determine if cards have all matched
 
 
-// if (openCards.length === 16) {
-//     alert('Great Job! You win');
-// }
-
-
-
-
-
 
 
 // });
+
+createCards();
+
+// TODO - not sure what to do yet
+// fix bug that allows clicking on the same card twice 
+// which turns it into the natched state
