@@ -21,9 +21,9 @@ let cardList = ['<i class="fa fa-diamond"></i>', '<i class="fa fa-paper-plane-o"
 // select parent element for cards
 let cardHolder = document.querySelector('.deck');
 
-let noOfMoves = document.querySelector('.moves');
+let movesParent = document.querySelector('.moves');
 
-noOfMoves.innerHTML = 0;
+let noOfMoves = movesParent.innerHTML = 0;
 
 
 // $(function() {
@@ -159,6 +159,7 @@ function allmatched() {
 // move counting function
 function countMoves() {
     noOfMoves++;
+    movesParent.innerHTML = noOfMoves;
 }
 
 createCards();
