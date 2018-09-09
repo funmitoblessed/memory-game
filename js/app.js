@@ -63,18 +63,13 @@ let shuffledCards = shuffle(cardList);
 
 // create Game Board
 function createCards() {
-
     for (const card of shuffledCards) {
         let eachCard = document.createElement('li');
         eachCard.classList.add('card');
         eachCard.innerHTML = (card);
         cardHolder.appendChild(eachCard);
         displayCardSymbol(eachCard);
-
-        console.log(eachCard);
-
     }
-
 };
 
 
