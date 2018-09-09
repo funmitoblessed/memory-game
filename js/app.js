@@ -110,6 +110,7 @@ function displayCardSymbol(eachCard) {
             compareCards(openCards);
             countMoves();
 
+
         } else { // if (openCards.length === 0)
             // console.log(this);
             firstCard.classList.add('open', 'show');
@@ -145,16 +146,15 @@ function matched() {
     // console.log(openCards);
     // console.log(matchedCards);
     allmatched();
-
 }
 
 // counter function
 
 
-//function to determine if cards have all matched
+//function to determine game win
 function allmatched() {
     if (matchedCards.length === 16) {
-        alert('Great Job! You win');
+        alert(`Congratulations ${user}! You won with ${noOfMoves + 1} moves and ${starsHolder.childElementCount} stars`);
     }
 }
 
@@ -162,11 +162,11 @@ function allmatched() {
 function countMoves() {
     noOfMoves++;
     movesParent.innerHTML = noOfMoves;
-    if (noOfMoves === 18) { // least no of moves to match all cards is 16
+    if (noOfMoves === 10) { // least no of moves to match all cards is 8
         starsHolder.firstElementChild.remove();
-    } else if (noOfMoves === 22) {
+    } else if (noOfMoves === 14) {
         starsHolder.firstElementChild.remove();
-    } else if (noOfMoves > 30) { // player will have no star rating
+    } else if (noOfMoves > 18) { // player will have no star rating
         starsHolder.firstElementChild.remove();
     }
 }
@@ -175,8 +175,9 @@ createCards();
 // });
 
 
-// TODO - not sure how yet
+// TODO
 
-/* fix bug that allows clicking on the same card twice 
- * which turns it into the natched state
+/* fix bug that allows clicking on the same card twice which turns it into the natched state
+ * change game win alert to modal
+ * apply some nicer styles
  */
