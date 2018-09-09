@@ -25,6 +25,8 @@ let movesParent = document.querySelector('.moves');
 
 let noOfMoves = movesParent.innerHTML = 0;
 
+let starsHolder = document.querySelector('.stars');
+
 
 // $(function() {
 /*
@@ -160,6 +162,13 @@ function allmatched() {
 function countMoves() {
     noOfMoves++;
     movesParent.innerHTML = noOfMoves;
+    if (noOfMoves === 18) { // least no of moves to match all cards is 16
+        starsHolder.firstElementChild.remove();
+    } else if (noOfMoves === 22) {
+        starsHolder.firstElementChild.remove();
+    } else if (noOfMoves > 30) { // player will have no star rating
+        starsHolder.firstElementChild.remove();
+    }
 }
 
 createCards();
