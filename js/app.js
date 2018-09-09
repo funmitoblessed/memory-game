@@ -19,7 +19,11 @@ let cardList = ['<i class="fa fa-diamond"></i>', '<i class="fa fa-paper-plane-o"
 ];
 
 // select parent element for cards
-let cardHolder = document.querySelector('.deck')
+let cardHolder = document.querySelector('.deck');
+
+let noOfMoves = document.querySelector('.moves');
+
+noOfMoves.innerHTML = 0;
 
 
 // $(function() {
@@ -84,29 +88,32 @@ function createCards() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-const allCards = document.getElementsByClassName('card');
+
 
 // Event Listener for click
 function displayCardSymbol(eachCard) {
 
     eachCard.addEventListener('click', function() {
+        event.preventDefault();
+
         let firstCard = this;
 
 
         if (openCards.length === 1) {
+            // console.log(this);
             let secondCard = this;
             secondCard.classList.add('open', 'show', );
             openCards.push(secondCard);
 
             compareCards(openCards);
+            countMoves();
 
-        } else { // if (openCards.length === 0) 
-
+        } else { // if (openCards.length === 0)
+            // console.log(this);
             firstCard.classList.add('open', 'show');
             openCards.push(firstCard);
 
         }
-
 
     });
 
@@ -148,6 +155,12 @@ function allmatched() {
         alert('Great Job! You win');
     }
 }
+
+// move counting function
+function countMoves() {
+    noOfMoves++;
+}
+
 createCards();
 // });
 
