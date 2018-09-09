@@ -1,23 +1,14 @@
+// declare all variables
+
 // get user name
 let user = prompt("What is your name, please?")
 
 let playerName = document.getElementById('player');
 
-// show user on screen
-
-playerName.innerHTML = user;
-
-// $(function() {
-/*
- * Create a list that holds all of your cards
- */
-
-// declare all variables
-
-
 // list of open cards
 let openCards = [];
 
+// array for matched cards
 let matchedCards = [];
 
 // list of cards
@@ -27,8 +18,17 @@ let cardList = ['<i class="fa fa-diamond"></i>', '<i class="fa fa-paper-plane-o"
     '<i class="fa fa-bolt"></i>', '<i class="fa fa-bicycle"></i>', '<i class="fa fa-paper-plane-o"></i>', '<i class="fa fa-cube"></i>'
 ];
 
+// select parent element for cards
 let cardHolder = document.querySelector('.deck')
 
+
+// $(function() {
+/*
+ * Create a list that holds all of your cards
+ */
+
+// show user on screen
+playerName.innerHTML = user;
 
 /*
  * Display the cards on the page
@@ -122,10 +122,11 @@ function compareCards() {
         matched();
         openCards = [];
     } else { // if ((openCards.length === 2) && (openCards[0].innerHTML !== openCards[1].innerHTML)) 
-
-        openCards[0].classList.remove('open', 'show');
-        openCards[1].classList.remove('open', 'show');
-        openCards = [];
+        setTimeout(function() {
+            openCards[0].classList.remove('open', 'show');
+            openCards[1].classList.remove('open', 'show');
+            openCards = [];
+        }, 300);
     }
 }
 
