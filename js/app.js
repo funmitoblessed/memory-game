@@ -100,7 +100,7 @@ function displayCardSymbol(eachCard) {
         if (openCards.length === 1) {
             // console.log(this);
             let secondCard = this;
-            secondCard.classList.add('open', 'show');
+            secondCard.classList.add('open', 'show', 'deactivate');
             openCards.push(secondCard);
 
             compareCards(openCards);
@@ -109,7 +109,7 @@ function displayCardSymbol(eachCard) {
 
         } else { // if (openCards.length === 0)
             // console.log(this);
-            firstCard.classList.add('open', 'show');
+            firstCard.classList.add('open', 'show', 'deactivate');
             openCards.push(firstCard);
 
         }
@@ -129,8 +129,8 @@ function compareCards() {
         openCards = [];
     } else { // if ((openCards.length === 2) && (openCards[0].innerHTML !== openCards[1].innerHTML)) 
         setTimeout(function() {
-            openCards[0].classList.remove('open', 'show');
-            openCards[1].classList.remove('open', 'show');
+            openCards[0].classList.remove('open', 'show', 'deactivate');
+            openCards[1].classList.remove('open', 'show', 'deactivate');
             openCards = [];
         }, 300);
     }
