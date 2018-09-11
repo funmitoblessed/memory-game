@@ -220,15 +220,11 @@ function resetGame() {
     })
 }
 
-
-
-
 createCards();
-
 
 // TODO
 
-/* fix bug that allows clicking on the same card twice which turns it into the matched state
+/* 
  * change game win alert to modal
  * apply some nicer styles
  */
